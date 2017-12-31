@@ -1,9 +1,151 @@
-body,
 html,
-#allmap {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,
+p,
+ul,
+ol,
+li,
+a,
+span,
+input {
+	margin: 0;
+	padding: 0;
+}
+
+ul,
+li {
+	list-style: none;
+}
+
+input {
+	border: none;
+}
+
+body,
+html {
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
 	margin: 0;
 	font-family: "微软雅黑";
+}
+
+.iwContent {}
+
+.iwContent p {
+	position: absolute;
+	padding-left: 50px;
+}
+
+.iwContent em {
+	position: relative;
+	top: 0;
+	left: 0;
+}
+
+#block-nav {
+	width: 30rem;
+	height: 100%;
+	margin-left: -30rem;
+	float: left;
+	position: relative;
+	transition: transform .5s;
+	-moz-transition: transform .5s;
+	-webkit-transition: transform .5s;
+	-o-transition: transform .5s;
+	background: #000000;
+}
+
+#block-nav-cinema-list {
+	position: absolute;
+	top: 6rem;
+	left: 0;
+}
+
+#block-nav-cinema-list li {
+	line-height: 3rem;
+	font-size: 2rem;
+	text-align: left;
+	vertical-align: middle;
+	color: #FFFFFF;
+	padding:0rem 2rem;
+}
+
+#block-nav-filter {
+	display: flex;
+	flex-direction: row;
+	position: absolute;
+	top: 2rem;
+	left: 2rem;
+	height: 3rem;
+}
+
+#block-nav-filter-input {
+	width: 26rem;
+	height: 100%;
+	font-size: 2rem;
+	line-height: 3rem;
+}
+
+#block-nav-filter-submit {
+	width: 30%;
+	height: 100%;
+	background: url(../image/filter.png) center center no-repeat;
+	-ms-background-size: contain;
+	-moz-background-size: contain;
+	-webkit-background-size: contain;
+	-o-background-size: contain;
+	background-size: contain;
+	background-color: green;
+}
+
+#block-main-content {
+	width: 100%;
+	height: 100%;
+	float: left;
+	position: relative;
+	transition: transform .5s;
+	-moz-transition: transform .5s;
+	-webkit-transition: transform .5s;
+	-o-transition: transform .5s;
+}
+
+#block-main-content-title {
+	width: 100%;
+	height: 5rem;
+	background: #000000;
+}
+
+#block-main-content-content {
+	width: 100%;
+	height: 95rem;
+}
+
+#block-main-content-title-show-nav {
+	background: url(../image/menu.png) center center no-repeat;
+	-ms-background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+	-webkit-background-size: 100% 100%;
+	-o-background-size: 100% 100%;
+	background-size: 100% 100%;
+	position: absolute;
+	width: 3.2rem;
+	height: 3.2rem;
+	top: 0.9rem;
+	left: 0.9rem;
+}
+
+#allmap {
+	width: 100%;
+	height: 100%;
+}
+
+.aniMoveRight {
+	transform: translateX(30rem);
 }

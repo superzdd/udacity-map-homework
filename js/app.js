@@ -1,22 +1,78 @@
-var initBaiduMap = function() {
-	// 百度地图API功能
-	var map = new BMap.Map("allmap"); // 创建Map实例
-	map.centerAndZoom(new BMap.Point(116.404, 39.915), 11); // 初始化地图,设置中心点坐标和地图级别
-	//添加地图类型控件
-	map.addControl(new BMap.MapTypeControl({
-		mapTypes: [
-			BMAP_NORMAL_MAP,
-			BMAP_HYBRID_MAP
-		]
-	}));
-	map.setCurrentCity("上海"); // 设置地图显示的城市 此项是必须设置的
-	map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放	
-	
-	return map;
+(function() {
+	var docElement = window.document.documentElement;
+	var width = getWindowSize().width;
+	var calcRem = 10;
+	console.log("rem.js 当前宽度：" + width + ",当前像素比:" + window.devicePixelRatio + ",/640:" + width / 640);
+	docElement.style.fontSize = calcRem + "px";
+
+	function getWindowSize() {
+		var winWidth = 0;
+		var winHeight = 0;
+
+		// 获取窗口宽度
+		if(window.innerWidth) {
+			winWidth = window.innerWidth;
+		} else if((document.body) && (document.body.clientWidth)) {
+			winWidth = document.body.clientWidth;
+		}
+
+		// 获取窗口高度
+		if(window.innerHeight) {
+			winHeight = window.innerHeight;
+		} else if((document.body) && (document.body.clientHeight)) {
+			winHeight = document.body.clientHeight;
+		}
+
+		// 通过深入Document内部对body进行检测，获取窗口大小
+		if(document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth) {
+			winHeight = document.documentElement.clientHeight;
+			winWidth = document.documentElement.clientWidth;
+		}
+
+		return {
+			width: winWidth,
+			height: winHeight
+		};
+	}
+})();
+
+function CinemaInfo(info) {
+	var self = this;
+	self.title = info.title;
+	self.location = info.location;
+	self.display = ko.observable(true);
 }
 
-var viewModel = function(){
-	this.map = ko.observable(initBaiduMap());
+var viewModel = function() {
+	var self = this;
+	self.mapInstance = ko.observable(new mapBaidu());
+	self.mapInstance().view.init();
+	//	self.cinemaList = ko.observableArray(self.mapInstance().controller.getCinemaList());
+	self.cinemaList = ko.observableArray();
+
+	var controller = self.mapInstance().controller;
+	controller.getCinemaList().forEach(function(element) {
+		self.cinemaList().push(new CinemaInfo(element));
+	});
+
+	self.showBlockNav = ko.observable(-1);
+
+	self.filterInput = ko.observable("");
+
+	// operation
+	self.filterCinema = function() {
+		var txtFilterInput = self.filterInput();
+		self.cinemaList().forEach(function(element) {
+			element.display((element.title.indexOf(txtFilterInput) >= 0));
+			console.log('title: ' + element.title + ", display: " + element.display());
+		});
+
+		self.mapInstance().view.renderFilterMarkers(self.cinemaList());
+	};
+
+	self.switchNavBlock = function() {
+		self.showBlockNav(self.showBlockNav() * -1);
+	}
 }
 
 ko.applyBindings(new viewModel());
