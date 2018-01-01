@@ -73,6 +73,10 @@ var viewModel = function() {
 	self.switchNavBlock = function() {
 		self.showBlockNav(self.showBlockNav() * -1);
 	}
+	
+	self.chooseThisCinema = function(liElement){
+		self.mapInstance().view.triggerMarker(liElement);
+	}
 }
 
 ko.applyBindings(new viewModel());

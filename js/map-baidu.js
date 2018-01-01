@@ -81,7 +81,7 @@ var mapBaidu = function() {
 		BMap: null,
 		BMapPoints: [],
 		BMapMarkers: [],
-		BMapInfowindows: []
+		BMapInfowindow: {}
 	};
 
 	self.controller = {
@@ -105,6 +105,12 @@ var mapBaidu = function() {
 		},
 		getBMapMarkers: function() {
 			return self.model.BMapMarkers;
+		},
+		addBMapInfowindow: function(key, value) {
+			self.model.BMapInfowindow[key] = value;
+		},
+		getBMapInfowindow: function(key, value) {
+			return self.model.BMapInfowindow;
 		}
 	};
 
@@ -133,16 +139,44 @@ var mapBaidu = function() {
 				var point = new BMap.Point(e.location.lng, e.location.lat);
 				self.controller.addBMapPoint(point);
 				var marker = new BMap.Marker(point);
+				marker.setTitle(e.title);
 				self.controller.addBMapMarker(marker);
 				self.view.renderMarker(marker);
 				var infoWindow = self.view.initInfoWindow(e);
+				self.controller.addBMapInfowindow(e.title, infoWindow);
 				marker.addEventListener("click", function() {
-					this.openInfoWindow(infoWindow);
+					// this.setAnimation(BMAP_ANIMATION_BOUNCE);
+					// this.openInfoWindow(infoWindow);
+
+					self.view.renderBounceMarker(this);
 				});
 			});
 		},
 		renderMarker: function(marker) {
 			self.controller.getMap().addOverlay(marker);
+		},
+		renderBounceMarker: function(marker) {
+			self.controller.getBMapMarkers().forEach(function(element) {
+				if(marker != element) {
+					element.setAnimation(null);
+					element.closeInfoWindow();
+				} else {
+					element.setAnimation(BMAP_ANIMATION_BOUNCE);
+					element.openInfoWindow(self.controller.getBMapInfowindow()[element.getTitle()]);
+				}
+			})
+
+			//			self.controller.getMap().addOverlay(marker);
+		},
+		triggerMarker: function(data) {
+			self.controller.getBMapMarkers().forEach(function(element) {
+				if(data.title != element.getTitle()) {
+					element.setAnimation(null);
+				} else {
+					self.view.renderBounceMarker(element);
+				}
+			})
+
 		},
 		initInfoWindow: function(cinemaInfo) {
 			var title = cinemaInfo.title;
@@ -171,13 +205,13 @@ var mapBaidu = function() {
 
 			mapUtil.centerAndZoom(new BMap.Point(gvp.center.lng, gvp.center.lat), gvp.zoom);
 		},
-		renderFilterMarkers:function(arr){
-			self.controller.getBMapMarkers().forEach(function(e){
+		renderFilterMarkers: function(arr) {
+			self.controller.getBMapMarkers().forEach(function(e) {
 				e.hide();
 			})
-			
-			for(var i=0;i<arr.length;i++){
-				if(arr[i].display()){
+
+			for(var i = 0; i < arr.length; i++) {
+				if(arr[i].display()) {
 					self.controller.getBMapMarkers()[i].show();
 					self.controller.getBMapMarkers()[i].setAnimation(BMAP_ANIMATION_DROP);
 				}

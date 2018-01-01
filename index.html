@@ -17,7 +17,7 @@
 			</div>
 			
 			<ul id="block-nav-cinema-list" data-bind="foreach: cinemaList">
-				<li data-bind="text: title,visible:display"></li>
+				<li data-bind="text: title,visible:display,event:{click:$root.chooseThisCinema.bind($data)}"></li>
 			</ul>
 		</div>
 		
