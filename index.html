@@ -4,6 +4,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<link href="css/swiper.min.css" rel="stylesheet" type="text/css" />
 		<link href="css/index.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=mQ1Xvi2z7GRzG5DPyKtLFiLhBbBd4CrU"></script>
 		<title>去看电影吧</title>
@@ -12,15 +13,26 @@
 	<body>
 		<div id="block-nav" data-bind="css: { aniMoveRight: showBlockNav() > 0 }">
 			<div id="block-nav-filter">
-				<input type="text" id="block-nav-filter-input" data-bind="value:filterInput"/>
+				<input type="text" id="block-nav-filter-input" data-bind="value:filterInput" />
 				<div id="block-nav-filter-submit" data-bind="click:filterCinema"></div>
 			</div>
-			
+
 			<ul id="block-nav-cinema-list" data-bind="foreach: cinemaList">
 				<li data-bind="text: title,visible:display,event:{click:$root.chooseThisCinema.bind($data)}"></li>
 			</ul>
+
+			<div id='block-nav-movie-list-new' class="swiper-container">
+				<div class="swiper-wrapper" data-bind="foreach: movieList">
+					<div class="swiper-slide">
+						<img data-bind="attr:{src:pic_url}" />
+					</div>
+				</div>
+				<div class="swiper-pagination"></div>
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+			</div>
 		</div>
-		
+
 		<div id="block-main-content" data-bind="css: { aniMoveRight: showBlockNav() > 0 }">
 			<div id="block-main-content-title">
 				<div id="block-main-content-title-show-nav" data-bind="click:switchNavBlock"></div>
@@ -29,13 +41,12 @@
 				<div id="allmap"></div>
 			</div>
 		</div>
-		
-		
-		
+
 	</body>
 
 </html>
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/knockout-3.4.2.js"></script>
+<script src="js/swiper.min.js"></script>
 <script type="text/javascript" src="js/map-baidu.js"></script>
 <script type="text/javascript" src="js/app.js"></script>

@@ -74,7 +74,7 @@ html {
 	text-align: left;
 	vertical-align: middle;
 	color: #FFFFFF;
-	padding:0rem 2rem;
+	padding: 0rem 2rem;
 }
 
 #block-nav-filter {
@@ -103,6 +103,29 @@ html {
 	-o-background-size: contain;
 	background-size: contain;
 	background-color: green;
+}
+
+#block-nav-movie-list {
+	position: absolute;
+	top: 40rem;
+	left: 0;
+	/*min-height: 20rem;
+	width: 30rem;*/
+}
+
+#block-nav-movie-list-new{
+	position: absolute;
+	top: 40rem;
+	left: 0;
+	min-height: 20rem;
+	width: 30rem;
+}
+
+.swiper-slide>img {
+	position: absolute;
+	left: 15rem;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
 }
 
 #block-main-content {

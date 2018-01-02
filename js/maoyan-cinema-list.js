@@ -1,3 +1,4 @@
+// 猫眼电影api数据参考，由于不支持jsonp，暂时不处理
 var maoyanCinemaList = {
 	"control": {
 		"expires": 43200
@@ -6876,4 +6877,70 @@ var maoyanCinemaList = {
 			"id": 158
 		}]
 	}
+};
+
+var juheGetCinemaAroundSuccessData = {
+	"reason": "success",
+	"result": [{
+		"id": "388398",
+		"cityName": "上海",
+		"cinemaName": "华夏久金国际影城",
+		"address": "上海市浦东新区张杨路3918号3楼311室 ",
+		"telephone": "021-58460310",
+		"latitude": "31.26118",
+		"longitude": "121.5864",
+		"trafficRoutes": "乘坐地铁6号线至金桥站到达",
+		"distance": 827
+	}, {
+		"id": "263844",
+		"cityName": "上海",
+		"cinemaName": " Always国际影城",
+		"address": "上海市浦东新区平度路258号 （近胶东路）",
+		"telephone": "021-50811033",
+		"latitude": "31.26134",
+		"longitude": "121.5986",
+		"trafficRoutes": "乘坐公车浦东6路、630、蔡陆专线、991、993、沪川线、785、1026至平度路胶东路站到达\n",
+		"distance": 1017
+	}, {
+		"id": "10",
+		"cityName": "上海",
+		"cinemaName": "上海闸北万达影城金桥店",
+		"address": "上海市浦东新区长岛路1156、1158号3楼",
+		"telephone": "021-20230988",
+		"latitude": "31.26684",
+		"longitude": "121.5987",
+		"trafficRoutes": "1、6号线博兴路站1号口左转；\n2、公交车783、785、981、1103台儿庄路长岛路站下车步行115米；\n3、公交车182、638、774、843、1026路长岛路台儿庄路站下车步行154米；\n4、公交车785台儿庄路博兴路站下车步行330米。",
+		"distance": 1517
+	}, {
+		"id": "68",
+		"cityName": "上海",
+		"cinemaName": "佰迦乐大光明影城",
+		"address": "上海市张杨北路801号文峰广场二楼",
+		"telephone": "021-22062967",
+		"latitude": "31.27734",
+		"longitude": "121.594",
+		"trafficRoutes": "地铁6号线",
+		"distance": 2515
+	}, {
+		"id": "673512",
+		"cityName": "上海",
+		"cinemaName": "SFC上影影城（金桥太茂店）",
+		"address": "上海市浦东新区金高路1882号金桥太茂广场四楼L401",
+		"telephone": "021-68766606",
+		"latitude": "31.27115",
+		"longitude": "121.6145",
+		"trafficRoutes": "乘坐公车(或地铁12号线，181，774，777路。   至杨高北路站站到达",
+		"distance": 2874
+	}, {
+		"id": "149685",
+		"cityName": "上海",
+		"cinemaName": "海上明珠国际影城联洋店",
+		"address": "上海市浦东新区芳甸路226号联洋广场A座二楼",
+		"telephone": "021-61821388",
+		"latitude": "31.23262",
+		"longitude": "121.5646",
+		"trafficRoutes": "乘坐公车(或地铁) 640路、815路、花木1路、184路、987路、983路、浦东35路 至 芳甸路迎春路  站到达",
+		"distance": 3532
+	}],
+	"error_code": 0
 };
