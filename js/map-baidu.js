@@ -223,3 +223,26 @@ var mapBaidu = function() {
 
 //var mapBaiduInstance = new mapBaidu();
 //mapBaiduInstance.view.init();
+
+function test() {
+	$.ajax({
+		type: "get",
+		url: "http://m.maoyan.com/cinemas.json",
+		async: true,
+		dataType: "jsonp", //指定服务器返回的数据类型
+		success: function(data) {
+			console.log('get cinema success!!' + JSON.stringify(data));
+		},
+		error: function(err, status, text) {
+			console.log('get cinema error!!' + JSON.stringify({
+				'status': status,
+				'text': text
+			}));
+		},
+		complete: function() {
+			console.log('get cinema complete!!');
+		}
+	});
+}
+
+test();
